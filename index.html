@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>星軌玄奧 — 3D玻璃擬態星座宇宙解讀中心</title>
+  <meta name="description" content="探索你的星曜軌跡。精緻的星座特質深度分析、星座配對契合度計算，與互動式每日星卡運勢占卜。">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- 星空背景 -->
+  <div class="nebula-bg"></div>
+  <div class="stars-container"></div>
+
+  <!-- 頁首導覽 -->
+  <header>
+    <div class="logo" id="logo">
+      <span class="logo-icon">🪐</span>
+      <span>星軌玄奧</span>
+    </div>
+    <nav>
+      <a href="#zodiac-wall" class="active">星曜特質</a>
+      <a href="#compatibility">星緣配對</a>
+      <a href="#zodiac-finder">生日尋星</a>
+      <a href="#fortune-oracle">星卡占卜</a>
+    </nav>
+  </header>
+
+  <!-- 主頁橫幅 Hero -->
+  <section class="hero">
+    <span class="hero-subtitle">Celestial Astro Guide</span>
+    <h1>探索繁星深處的<br>靈魂軌跡</h1>
+    <p>宇宙以繁星為語，寫下你一生的命運密碼。在這裡，解鎖深層的人格特質、尋覓星曜間的契合共鳴，並由星卡指引今日的吉凶福禍。</p>
+    <div style="display: flex; justify-content: center; gap: 1rem;">
+      <a href="#zodiac-wall" class="btn btn-primary">開啟星曜解讀</a>
+      <a href="#fortune-oracle" class="btn btn-secondary">進行每日占卜</a>
+    </div>
+  </section>
+
+  <!-- 星座互動牆 Section -->
+  <section class="grid-section" id="zodiac-wall">
+    <h2 class="section-title">
+      星曜特質牆
+      <span>Zodiac Traits Gallery</span>
+    </h2>
+
+    <!-- 篩選器 -->
+    <div class="filters">
+      <button class="filter-btn active" data-element="all">全部星座</button>
+      <button class="filter-btn" data-element="fire">🔥 火象星座</button>
+      <button class="filter-btn" data-element="earth">🌱 土象星座</button>
+      <button class="filter-btn" data-element="air">💨 風象星座</button>
+      <button class="filter-btn" data-element="water">💧 水象星座</button>
+    </div>
+
+    <!-- 星座卡片網格 -->
+    <div class="zodiac-grid" id="zodiacGrid">
+      <!-- 透過 JS 動態產生 -->
+    </div>
+  </section>
+
+  <!-- 星座配對計算器 Section -->
+  <section class="compatibility-section" id="compatibility">
+    <h2 class="section-title">
+      星緣配對契合度
+      <span>Zodiac Matchmaker Compatibility</span>
+    </h2>
+
+    <div class="glass-panel">
+      <div class="matchmaker-flex">
+        <!-- 星座 A -->
+        <div class="zodiac-select-box">
+          <label for="zodiacA">主星座 A</label>
+          <div class="selector-preview" id="previewA">♈</div>
+          <select id="zodiacA" class="zodiac-selector">
+            <option value="aries" selected>牡羊座</option>
+            <option value="taurus">金牛座</option>
+            <option value="gemini">雙子座</option>
+            <option value="cancer">巨蟹座</option>
+            <option value="leo">獅子座</option>
+            <option value="virgo">處女座</option>
+            <option value="libra">天秤座</option>
+            <option value="scorpio">天蠍座</option>
+            <option value="sagittarius">射手座</option>
+            <option value="capricorn">摩羯座</option>
+            <option value="aquarius">水瓶座</option>
+            <option value="pisces">雙魚座</option>
+          </select>
+        </div>
+
+        <!-- 愛心按鈕 -->
+        <div class="match-heart" id="btnMatch" title="點擊演算配對">💖</div>
+
+        <!-- 星座 B -->
+        <div class="zodiac-select-box">
+          <label for="zodiacB">配星座 B</label>
+          <div class="selector-preview" id="previewB">♌</div>
+          <select id="zodiacB" class="zodiac-selector">
+            <option value="aries">牡羊座</option>
+            <option value="taurus">金牛座</option>
+            <option value="gemini">雙子座</option>
+            <option value="cancer">巨蟹座</option>
+            <option value="leo" selected>獅子座</option>
+            <option value="virgo">處女座</option>
+            <option value="libra">天秤座</option>
+            <option value="scorpio">天蠍座</option>
+            <option value="sagittarius">射手座</option>
+            <option value="capricorn">摩羯座</option>
+            <option value="aquarius">水瓶座</option>
+            <option value="pisces">雙魚座</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- 配對結果呈現面版 -->
+      <div class="match-result-card" id="matchResult">
+        <!-- JS 動態計算後輸出 -->
+      </div>
+    </div>
+  </section>
+
+  <!-- 生日尋找星座 Section -->
+  <section class="birthday-finder" id="zodiac-finder">
+    <div class="glass-panel" style="text-align: center;">
+      <h2 class="section-title" style="margin-bottom: 1.5rem;">
+        生日尋找星座
+        <span>Find Your Zodiac Sign</span>
+      </h2>
+      <p style="color: var(--text-secondary);">不知道自己或朋友的太陽星座嗎？輸入出生月日，宇宙為您指點迷津。</p>
+      
+      <div class="input-group">
+        <input type="date" id="birthdayInput" class="date-input" min="1900-01-01" max="2099-12-31">
+        <button class="btn btn-primary" id="btnFindZodiac">解讀星曜歸屬</button>
+      </div>
+
+      <div id="finderResult" class="finder-result">
+        <!-- 動態星座輸出結果 -->
+      </div>
+    </div>
+  </section>
+
+  <!-- 星卡每日占卜 Section -->
+  <section class="oracle-section" id="fortune-oracle">
+    <h2 class="section-title">
+      命運星卡占卜
+      <span>Interactive Daily Oracle Drawing</span>
+    </h2>
+    <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto 2.5rem;">
+      在心中默想著您的今日願望，選擇您要占卜的星座，依序翻開下方四張神秘命運星卡，獲取今日的全面運勢指引。
+    </p>
+
+    <div style="max-width: 250px; margin: 0 auto 2rem;">
+      <select id="oracleZodiacSelector" class="zodiac-selector">
+        <option value="" disabled selected>— 請選擇占卜星座 —</option>
+        <option value="aries">牡羊座</option>
+        <option value="taurus">金牛座</option>
+        <option value="gemini">雙子座</option>
+        <option value="cancer">巨蟹座</option>
+        <option value="leo">獅子座</option>
+        <option value="virgo">處女座</option>
+        <option value="libra">天秤座</option>
+        <option value="scorpio">天蠍座</option>
+        <option value="sagittarius">射手座</option>
+        <option value="capricorn">摩羯座</option>
+        <option value="aquarius">水瓶座</option>
+        <option value="pisces">雙魚座</option>
+      </select>
+    </div>
+
+    <!-- 卡牌繪製區域 -->
+    <div class="card-draw-container">
+      <!-- 卡 1：整體 -->
+      <div class="oracle-card-wrapper" data-type="overall">
+        <div class="oracle-card-inner">
+          <div class="oracle-card-back">
+            <div class="card-pattern"></div>
+            <p>整體星曜</p>
+          </div>
+          <div class="oracle-card-front overall">
+            <div class="oracle-icon">🔮</div>
+            <h3>整體運勢</h3>
+            <p class="fortune-quote">點擊翻牌獲取運勢...</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 卡 2：感情 -->
+      <div class="oracle-card-wrapper" data-type="love">
+        <div class="oracle-card-inner">
+          <div class="oracle-card-back">
+            <div class="card-pattern"></div>
+            <p>紅鸞桃花</p>
+          </div>
+          <div class="oracle-card-front love">
+            <div class="oracle-icon">💖</div>
+            <h3>愛情運勢</h3>
+            <p class="fortune-quote">點擊翻牌獲取運勢...</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 卡 3：事業 -->
+      <div class="oracle-card-wrapper" data-type="career">
+        <div class="oracle-card-inner">
+          <div class="oracle-card-back">
+            <div class="card-pattern"></div>
+            <p>文昌事業</p>
+          </div>
+          <div class="oracle-card-front career">
+            <div class="oracle-icon">💼</div>
+            <h3>事業運勢</h3>
+            <p class="fortune-quote">點擊翻牌獲取運勢...</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 卡 4：財富 -->
+      <div class="oracle-card-wrapper" data-type="wealth">
+        <div class="oracle-card-inner">
+          <div class="oracle-card-back">
+            <div class="card-pattern"></div>
+            <p>祿存財富</p>
+          </div>
+          <div class="oracle-card-front wealth">
+            <div class="oracle-icon">🪙</div>
+            <h3>財富運勢</h3>
+            <p class="fortune-quote">點擊翻牌獲取運勢...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 占卜結果版面 -->
+    <div class="fortune-result-board" id="fortuneResultBoard">
+      <div class="board-header">
+        <div class="board-title">星運大師解讀報告 (<span id="boardZodiac">星座</span>)</div>
+        <div class="board-date" id="boardDate">預測時間：</div>
+      </div>
+      <div class="fortune-grid">
+        <div class="fortune-item overall">
+          <h4>🔮 整體神示</h4>
+          <p id="resOverall"></p>
+        </div>
+        <div class="fortune-item love">
+          <h4>💖 紅鸞桃花</h4>
+          <p id="resLove"></p>
+        </div>
+        <div class="fortune-item career">
+          <h4>💼 文昌事業</h4>
+          <p id="resCareer"></p>
+        </div>
+        <div class="fortune-item wealth">
+          <h4>🪙 祿存財富</h4>
+          <p id="resWealth"></p>
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: 2.5rem;">
+        <button class="btn btn-secondary" id="btnResetOracle">重設星卡・重新占卜</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 星座詳細彈窗 Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-container" id="modalContainer" data-element="fire">
+      <button class="modal-close" id="modalClose">&times;</button>
+      
+      <!-- 頂部 Banner -->
+      <div class="modal-banner">
+        <div class="modal-banner-glow"></div>
+        <div class="modal-header-info">
+          <span class="modal-symbol" id="modalSymbol">♈</span>
+          <div class="modal-name-group">
+            <h2 id="modalName">牡羊座</h2>
+            <p id="modalEngName">Aries</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 內容 -->
+      <div class="modal-body">
+        <!-- 屬性藥丸 -->
+        <div class="modal-quick-meta">
+          <div class="meta-pill">
+            <span>日期區間</span>
+            <p id="metaDate">3.21 - 4.19</p>
+          </div>
+          <div class="meta-pill">
+            <span>星象屬性</span>
+            <p id="metaElement">火象星座</p>
+          </div>
+          <div class="meta-pill">
+            <span>守護行星</span>
+            <p id="metaPlanet">火星</p>
+          </div>
+          <div class="meta-pill">
+            <span>幸運物</span>
+            <p><span id="metaColor">鮮紅色</span> / 數字 <span id="metaNumber">9</span></p>
+          </div>
+        </div>
+
+        <h3 class="modal-desc-title" id="modalSummary">一言概要</h3>
+        <p class="modal-desc-content" id="modalDescription">性格詳細解析內容...</p>
+
+        <!-- 優缺點雙欄 -->
+        <div class="traits-dual-col">
+          <div class="traits-card strengths">
+            <h4>✓ 陽光特質 (優點)</h4>
+            <ul class="traits-list" id="modalStrengths">
+              <!-- JS 動態產生 -->
+            </ul>
+          </div>
+          <div class="traits-card weaknesses">
+            <h4>✗ 陰影特質 (缺點)</h4>
+            <ul class="traits-list" id="modalWeaknesses">
+              <!-- JS 動態產生 -->
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 頁尾 -->
+  <footer>
+    <p>&copy; 2026 星軌玄奧中心. All Celestial Rights Reserved.</p>
+    <p style="font-size: 0.75rem; color: var(--text-muted);">本站純前端運作，星曜預測資料為隨機演算與常規星象之趣味參考。</p>
+  </footer>
+
+  <!-- 引入資料與應用邏輯 -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
